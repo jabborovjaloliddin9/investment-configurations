@@ -3,3 +3,29 @@ server:
 spring:
   application:
     name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enable: true
+      routes:
+        - id: user-service
+          predicates:
+            - name: Path
+              args:
+                regexp: /user-service/**
+          uri: lb://user-service
+
+        - id: user-service
+          predicates:
+            - name: Path
+              args:
+                regexp: /auth-service/**
+          uri: lb://auth-service
+
+        - id: user-service
+          predicates:
+            - name: Path
+              args:
+                regexp: /user-service/**
+          uri: lb://user-service
