@@ -21,6 +21,10 @@ spring:
             - name: Path
               args:
                 regexp: /auth-service/**
+            - name: Cookie
+              args:
+                name: myCookie
+                regexp: myCookieValue
           uri: lb://auth-service
 
         - id: user-service
