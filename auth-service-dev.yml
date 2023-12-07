@@ -6,7 +6,7 @@ server:
     include-binding-errors: always
 spring:
   config:
-    import: classpath:database-config.yml, classpath:circuit-breaker-configuration-dev
+    import: classpath:database-config.yml, classpath:circuit-breaker-configuration-dev.yml
 
 feign:
   client:
