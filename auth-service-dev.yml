@@ -6,7 +6,7 @@ server:
     include-binding-errors: always
 spring:
   config:
-    import: database-config.yml
+    import: database-config.yml, circuit-breaker-configuration-dev
 
 feign:
   client:
@@ -15,3 +15,4 @@ feign:
         connectTimeout: 5000
         readTimeout: 5000
         loggerLevel: basic
+
