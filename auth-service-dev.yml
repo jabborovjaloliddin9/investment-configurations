@@ -6,7 +6,7 @@ server:
     include-binding-errors: always
 spring:
   config:
-    import: classpath:database-config.yml,classpath:circuit-breaker-configuration.yml
+    import: database-config.yml
 
 feign:
   client:
@@ -15,3 +15,51 @@ feign:
         connectTimeout: 5000
         readTimeout: 5000
         loggerLevel: basic
+
+#user-service metirkalarini olish uchun ishlatiladi
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+  health:
+    diskspace:
+      enabled: true
+    circuitbreakers:
+      ebabled: true
+    ratelimiters:
+      enabled: true
+  metrics:
+    tags:
+      application:
+        ${spring.application.name}
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests:
+              true
+        resilience4j:
+          cicuitbreaker:
+            calls:
+              true
+
+resilience4j:
+  circuitbreaker:
+    config:
+      default:
+        registerHealthIndicator: true
+    instances:
+      auth-service:
+        register-helth-indicator: true
+        sliding-window-size: 10
+        sliding-window-type: COUNT_BASED
+        failure-rate-threshold: 50
+        permitted-number-of-calls-in-half-open-state: 3
+        wait-duration-in-open-state: 6s
+        automatic-translation-from-open-to-half-open-enabled: true
+        minimum-number-of-calls: 5
+        event-consumer-buffer-size: 10
