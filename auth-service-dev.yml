@@ -27,25 +27,22 @@ management:
       show-details: always
   health:
     diskspace:
-      enabled: true
+      enabled: false
     circuitbreakers:
       ebabled: true
     ratelimiters:
       enabled: true
   metrics:
     tags:
-      application:
-        ${spring.application.name}
+      application: ${spring.application.name}
     distribution:
       percentiles-histogram:
         http:
           server:
-            requests:
-              true
+            requests: true
         resilience4j:
           cicuitbreaker:
-            calls:
-              true
+            calls: true
 
 resilience4j:
   circuitbreaker:
