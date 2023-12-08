@@ -50,7 +50,7 @@ resilience4j:
       default:
         registerHealthIndicator: true
     instances:
-      auth-service:
+      authService:
         register-helth-indicator: true
         sliding-window-size: 10
         sliding-window-type: COUNT_BASED
