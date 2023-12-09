@@ -13,8 +13,6 @@ spring:
 
   cloud:
     gateway:
-      default-filters:
-        - TokenBucketRateLimiter
       discovery:
         locator:
           enable: true
@@ -27,7 +25,7 @@ spring:
               args:
                 regexp: /user-service/**
           filters:
-            - name: RequestRateLimiter_redis_rate-limiter
+            - name: RequestRateLimiter
               args:
                 redis-rate-limiter.replenishRate: 500
                 redis-rate-limiter.burstCapacity: 1000
