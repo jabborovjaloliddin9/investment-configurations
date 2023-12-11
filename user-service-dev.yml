@@ -7,3 +7,9 @@ server:
 spring:
   config:
     import: database-config.yml
+
+kafka:
+  producer:
+    bootstrap-server: "localhost:9092"
+    key-serializer: "StringSerializer.class"
+    value-serializer: "StringSerializer.class"
