@@ -60,3 +60,16 @@ resilience4j:
         automatic-translation-from-open-to-half-open-enabled: true
         minimum-number-of-calls: 5
         event-consumer-buffer-size: 10
+
+
+kafka:
+  producer:
+    bootstrap-server: "localhost:9092"
+    key-serializer: "org.apache.kafka.common.serialization.StringSerializer"
+    value-serializer: "org.apache.kafka.common.serialization.StringSerializer"
+    byte-value-serializer: "org.apache.kafka.common.serialization.ByteArraySerializer"
+  consumer:
+    bootstrap-server: "localhost:9092"
+    key-deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+    value-deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+    partition-assignment-strategy: 'org.apache.kafka.clients.consumer.RoundRobinAssignor'
