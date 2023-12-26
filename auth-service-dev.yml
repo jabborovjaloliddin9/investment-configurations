@@ -7,6 +7,8 @@ server:
 spring:
   config:
     import: database-config.yml
+  main:
+    allow-bean-definition-overriding: true
 
 feign:
   client:
